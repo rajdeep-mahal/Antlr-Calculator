@@ -6,7 +6,7 @@ from MyExprVisitor import MyExprVisitor
 
 
 def main(argv):
-    input = InputStream("sin 4^3")
+    input = InputStream("cos(2.35 * pi)")
 
     lexer = ExprLexer(input)
     stream = CommonTokenStream(lexer)

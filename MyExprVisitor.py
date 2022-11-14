@@ -36,7 +36,12 @@ class MyExprVisitor(ExprVisitor):
 
     # Visit a parse tree produced by ExprParser#numberExpr.
     def visitNumberExpr(self, ctx: ExprParser.NumberExprContext):
-        c = int(str(ctx.INT()))  # Found a number, just insert to stack
+        if ctx.INT():
+            c = int(str(ctx.INT()))  # Found a number, just insert to stack
+        elif ctx.PI():
+            c = pi
+        elif ctx.DEC():
+            c = float(str(ctx.DEC()))
         self.stack.append(c)
         return c
 
@@ -44,12 +49,14 @@ class MyExprVisitor(ExprVisitor):
        self.visit(ctx.expr())
        c = self.stack.pop()
        if ctx.TRIG_SIN():
+           self.stack.append(sin(c))
            return sin(c)
        elif ctx.TRIG_COS():
+           self.stack.append(cos(c))
            return cos(c)
        elif ctx.TRIG_TAN():
+           self.stack.append(tan(c))
            return tan(c)
-
 
     # Visit a parse tree produced by ExprParser#parensExpr.
     def visitParensExpr(self, ctx: ExprParser.ParensExprContext):

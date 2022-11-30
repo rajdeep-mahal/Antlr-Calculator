@@ -175,6 +175,21 @@ def click(value):
             entryField.insert(0, ex)
             return
 
+        elif value == '(':
+            input = entryField.get()
+            ex = "(" + input
+            entryField.delete(0,END)
+            entryField.insert(0, ex)
+            return
+
+
+        elif value == ')':
+            input = entryField.get()
+            ex = input + ")"
+            entryField.delete(0, END)
+            entryField.insert(0, ex)
+            return
+
         elif value == 'x!':
             input = entryField.get()
             ex = "(" + input + ")!"
@@ -266,29 +281,3 @@ for i in button_text_list:
         columnvalue = 0
 
 root.mainloop()
-
-
-def parseInput(input):
-
-    lexer = ExprLexer(input)
-    stream = CommonTokenStream(lexer)
-    parser = ExprParser(stream)
-    tree = parser.prog()
-    res = MyExprVisitor().visitProg(tree)
-    return res
-'''
-def main(argv):
-    input = InputStream("(cos(2.35*(pi)+4))+4*3")
-    lexer = ExprLexer(input)
-    stream = CommonTokenStream(lexer)
-    parser = ExprParser(stream)
-    tree = parser.prog()
-
-    res = MyExprVisitor().visitProg(tree)  # Evaluate the expression
-
-    print(input, '=', res)
-
-
-if __name__ == '__main__':
-    main(sys.argv)
-'''

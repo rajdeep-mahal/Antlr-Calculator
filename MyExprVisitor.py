@@ -114,7 +114,6 @@ class MyExprVisitor(ExprVisitor):
            self.stack.append((degrees(c)))
            return degrees(c)
 
-
     # Visit a parse tree produced by ExprParser#parensExpr.
     def visitParensExpr(self, ctx: ExprParser.ParensExprContext):
         return self.visit(ctx.expr())  # Since enclosed by parents, just visit expr

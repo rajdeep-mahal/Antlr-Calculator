@@ -2,12 +2,14 @@ grammar Expr;
 
 prog: expr EOF;
 
-expr: expr op expr           #infixExpr
-| exponential expr               #expoExpr
-| trigFunc '(' expr ')'         #trigExpr
-| term                          #numberExpr
+expr: left=expr op='^' right=expr              #infixExpr
+| left=expr op=('*' | '/' | '%') right=expr       #infixExpr
+| left=expr op=('-' | '+') right=expr       #infixExpr
+| exponential '(' expr ')'   #exponentialExpr
+| trig '(' expr ')'         #trigExpr
+| term                          #termExpr
 | '(' expr ')'                  #parensExpr
-| fact_expr                     #factorialExpr
+| '(' expr ')!'                 #factorialExpression
 ;
 
 
@@ -15,9 +17,6 @@ exponential: LOG_BASE_10
 | NATURAL_LOG
 | SQRT
 | CUBE_RT
-;
-
-fact_expr: term '!'
 ;
 
 term:
@@ -30,7 +29,7 @@ term:
 
 
 
-trigFunc: TRIG_COS
+trig: TRIG_COS
 | TRIG_SIN
 | TRIG_TAN
 | TRIG_DEG
@@ -40,18 +39,9 @@ trigFunc: TRIG_COS
 | TRIG_TANH
 ;
 
-op: OP_ADD
-| OP_SUB
-| OP_DIV
-| OP_MUL
-| OP_POW
-| OP_MOD
-;
-
-
-LOG_BASE_10: 'log₁₀';
-SQRT: '√';
-CUBE_RT: [chr(8731)];
+LOG_BASE_10: 'log10';
+SQRT: 'sqrt';
+CUBE_RT: 'cbrt';
 NATURAL_LOG: 'ln';
 
 

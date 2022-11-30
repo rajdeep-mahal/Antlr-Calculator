@@ -19,8 +19,8 @@ class ExprVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ExprParser#numberExpr.
-    def visitNumberExpr(self, ctx:ExprParser.NumberExprContext):
+    # Visit a parse tree produced by ExprParser#termExpr.
+    def visitTermExpr(self, ctx:ExprParser.TermExprContext):
         return self.visitChildren(ctx)
 
 
@@ -31,6 +31,31 @@ class ExprVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by ExprParser#parensExpr.
     def visitParensExpr(self, ctx:ExprParser.ParensExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ExprParser#exponentialExpr.
+    def visitExponentialExpr(self, ctx:ExprParser.ExponentialExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ExprParser#factorialExpression.
+    def visitFactorialExpression(self, ctx:ExprParser.FactorialExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ExprParser#exponential.
+    def visitExponential(self, ctx:ExprParser.ExponentialContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ExprParser#term.
+    def visitTerm(self, ctx:ExprParser.TermContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ExprParser#trig.
+    def visitTrig(self, ctx:ExprParser.TrigContext):
         return self.visitChildren(ctx)
 
 

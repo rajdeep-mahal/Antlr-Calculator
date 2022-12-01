@@ -1,1 +1,1 @@
-# CS_152
+# CS_152_Calculator
